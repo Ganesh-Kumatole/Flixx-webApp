@@ -19,6 +19,8 @@ body {
   background: var(--color-primary);
   color: var(--light-white);
   overflow-x: hidden;
+
+  position: relative;
 }
 
 a {
@@ -375,17 +377,17 @@ section h2 {
 }
 
 /* Alert */
-.alert {
-  background: red;
-  padding: 10px 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-.alert-success {
-  background: green;
-}
-
 .alert-error {
-  background: red;
+  background: rgb(241, 4, 4);
+  padding: 10px 15px;
+  border-radius: 5px;
+  height: fit-content;
+  width: fit-content;
+
+  position: absolute;
+  top: 2rem;
+
+  font-weight: 500;
+  color: #fff;
+  font-size: 0.85rem;
 }
