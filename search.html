@@ -10,11 +10,12 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="images/video-camera.png" />
     <link rel="stylesheet" href="lib/fontawesome.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/spinner.css" />
     <script src="js/script.js" defer></script>
-    <title>Flixx</title>
+    <title>Flixx | Search Movies & Shows</title>
   </head>
   <body>
     <header class="main-header">
@@ -26,17 +27,44 @@
               <a class="nav-link" href="/">Movies</a>
             </li>
             <li>
-              <a class="nav-link tv-shows" href="/shows.html">TV Shows</a>
+              <a class="nav-link" href="/shows.html">TV Shows</a>
             </li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <!-- Popular TV Shows -->
-    <section class="container">
-      <h2>Popular TV Shows</h2>
-      <div id="popular-shows" class="grid"></div>
+    <!-- Search Movies -->
+    <section class="search">
+      <div class="container">
+        <div id="alert"></div>
+        <form action="/search.html" class="search-form">
+          <div class="search-radio">
+            <input type="radio" id="movie" name="type" value="movie" />
+            <label for="movies">Movies</label>
+            <input type="radio" id="tv" name="type" value="tv" />
+            <label for="shows">TV Shows</label>
+          </div>
+          <div class="search-flex">
+            <input
+              type="text"
+              name="searchTerm"
+              id="search-term"
+              placeholder="Enter search term"
+            />
+            <button class="btn" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Search Results -->
+    <section id="search-results-wrapper" class="container">
+      <h2 id="search-results-heading"></h2>
+      <div id="search-results" class="grid"></div>
+      <div id="pagination"></div>
     </section>
 
     <!-- Footer -->

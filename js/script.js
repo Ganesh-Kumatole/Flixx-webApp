@@ -4,12 +4,69 @@ const global = {
     method: "GET",
     headers: {
       accept: "application/json",
+      // Generate your own API key and access token from https://www.themoviedb.org/settings/api
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjA2ZGZhM2Y1ZWE5MjJlMGE1YmNkNGRiMDhkNDI4NyIsIm5iZiI6MTc1MDI2ODA1MC43MTgwMDAyLCJzdWIiOiI2ODUyZjg5MjY5OTFiNjU2Yjg1ZDg1MGMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.ZpGd7-AvNcTATX8y3fHhPxUJnCI6oInuBYmTfsnUbqs",
     },
   },
   page: 1,
 };
+
+// Swiper initialization
+function swiperInit() {
+  const swiper = new Swiper(".swiper", {
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    freeMode: true,
+    // direction: vertical,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+      },
+      480: {
+        slidesPerView: 2,
+        spaceBetween: 40,
+      },
+      1000: {
+        slidesPerView: 4,
+        spaceBetween: 25,
+      },
+    },
+    loop: true,
+    init: true,
+  });
+}
+
+// Display Now_Playing movies
+async function displayAndInitSwiper(endpoint, type) {
+  const { results } = await fetchData(endpoint);
+
+  results.forEach((movieOrTv) => {
+    const div = document.createElement("div");
+    div.className = "swiper-slide";
+    div.innerHTML = `
+    <div class="swiper-slide">
+      <a href="${type}-details.html?id=${movieOrTv.id}">
+        <img src="https://media.themoviedb.org/t/p/w440_and_h660_face${
+          movieOrTv.poster_path
+        }" alt="${movieOrTv === "movie" ? movieOrTv.title : movieOrTv.name}" />
+      </a>
+      <h4 class="swiper-rating">
+        <i class="fas fa-star text-secondary"></i> ${Math.floor(
+          movieOrTv.vote_average
+        )} / 10
+      </h4>
+    </div>
+    `;
+
+    document.querySelector("div.swiper-wrapper").append(div);
+  });
+
+  swiperInit();
+}
 
 // Add commas to Bignumber
 function addCommastoNumber(number) {
@@ -381,10 +438,12 @@ function init() {
     case "/":
 
     case "/index.html":
+      displayAndInitSwiper("/trending/movie/week", "movie");
       popularMovies("/movie/popular");
       break;
 
     case "/shows.html":
+      displayAndInitSwiper("/trending/tv/week", "tv");
       popularTvShows("/tv/popular");
       break;
 

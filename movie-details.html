@@ -10,11 +10,13 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="images/video-camera.png" />
+
     <link rel="stylesheet" href="lib/fontawesome.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/spinner.css" />
     <script src="js/script.js" defer></script>
-    <title>Flixx | Search Movies & Shows</title>
+    <title>Flixx | Movie Details</title>
   </head>
   <body>
     <header class="main-header">
@@ -33,37 +35,33 @@
       </div>
     </header>
 
-    <!-- Search Movies -->
-    <section class="search">
-      <div class="container">
-        <div id="alert"></div>
-        <form action="/search.html" class="search-form">
-          <div class="search-radio">
-            <input type="radio" id="movie" name="type" value="movie" />
-            <label for="movies">Movies</label>
-            <input type="radio" id="tv" name="type" value="tv" />
-            <label for="shows">TV Shows</label>
-          </div>
-          <div class="search-flex">
-            <input
-              type="text"
-              name="searchTerm"
-              id="search-term"
-              placeholder="Enter search term"
-            />
-            <button class="btn" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </form>
+    <!-- Movie Details -->
+    <section class="container">
+      <div class="back">
+        <a class="btn" href="index.html">Back To Movies</a>
       </div>
-    </section>
-
-    <!-- Search Results -->
-    <section id="search-results-wrapper" class="container">
-      <h2 id="search-results-heading"></h2>
-      <div id="search-results" class="grid"></div>
-      <div id="pagination"></div>
+      <!-- Movie Details Output -->
+      <div id="movie-details">
+        <div class="details-top">
+          <img
+            src="images/no-image.jpg"
+            class="card-img-top"
+            alt="Movie Title"
+          />
+          <div></div>
+        </div>
+        <div class="details-bottom">
+          <h2>Movie Info</h2>
+          <ul>
+            <li><span class="text-secondary">Budget:</span> $1,000,000</li>
+            <li><span class="text-secondary">Revenue:</span> $2,000,000</li>
+            <li><span class="text-secondary">Runtime:</span> 90 minutes</li>
+            <li><span class="text-secondary">Status:</span> Released</li>
+          </ul>
+          <h4>Production Companies</h4>
+          <div class="list-group">Company 1, Company 2, Company 3</div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->

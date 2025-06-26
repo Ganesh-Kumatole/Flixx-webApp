@@ -181,7 +181,7 @@ ul {
 
 /* Section: Now Playing */
 
-section.now-playing {
+section.trending {
   padding: 60px;
   background: url(../images/showcase-bg.jpg) no-repeat center center/cover;
 }
@@ -195,7 +195,7 @@ section h2 {
 /* Slider */
 .swiper {
   width: 100%;
-  height: 50%;
+  height: 100%;
 }
 
 .swiper-slide {
