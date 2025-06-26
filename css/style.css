@@ -222,50 +222,16 @@ section h2 {
 /* Movie/tvShow Details */
 .details-top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 50px 0 30px;
-}
-
-@media screen and (max-width: 800px) {
-  .details-top {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .details-top img {
-    margin-right: 0px;
-  }
-
-  .details-top div,
-  .details-bottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .details-top p {
-    text-align: center;
-    text-wrap: balance;
-  }
-
-  .details-top ul.list-group {
-    text-align: center;
-  }
-
-  .details-bottom div.list-group {
-    text-align: center;
-    text-wrap: balance;
-    line-height: 2rem;
-  }
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 60px;
+  margin: 50px 0px 30px;
 }
 
 .details-top img {
-  max-width: 400px;
-  height: 100%;
-  margin-right: 60px;
-  object-fit: fill;
+  height: auto;
+  width: auto;
+  margin: 0px 10px;
 }
 
 .details-top p {
@@ -390,4 +356,58 @@ section h2 {
   font-weight: 500;
   color: #fff;
   font-size: 0.85rem;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 900px) {
+  .details-top {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  div.details-top div:first-child {
+    width: 100%;
+  }
+
+  div.details-top img {
+    width: 75%;
+  }
+
+  .details-top div,
+  .details-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .details-top p {
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .details-bottom li {
+    text-align: center;
+  }
+
+  .details-bottom div.list-group {
+    text-align: center;
+    text-wrap: balance;
+    line-height: 2rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  div.details-top div:first-child {
+    width: 100%;
+  }
+
+  div.details-top img {
+    width: 100%;
+  }
+
+  .search {
+    padding: 50px 10px;
+  }
 }
