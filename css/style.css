@@ -374,6 +374,10 @@ section h2 {
     width: 75%;
   }
 
+  .details-top ul.list-group li {
+    text-align: center;
+  }
+
   .details-top div,
   .details-bottom {
     display: flex;

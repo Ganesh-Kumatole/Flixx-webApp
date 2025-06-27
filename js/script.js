@@ -433,46 +433,42 @@ async function tvShowDetails(tvShowId) {
 
 // Intialize web-app
 function init() {
-  // Kinda Page router
-  switch (global.currentPath) {
-    case "/":
-
-    case "/index.html":
-      displayAndInitSwiper("/trending/movie/week", "movie");
-      popularMovies("/movie/popular");
-      break;
-
-    case "/shows.html":
-      displayAndInitSwiper("/trending/tv/week", "tv");
-      popularTvShows("/tv/popular");
-      break;
-
-    case "/movie-details.html":
-      let qstrMovie = new URLSearchParams(location.search);
-      const movieId = qstrMovie.get("id");
-      movieDetails(movieId);
-      break;
-
-    case "/tv-details.html":
-      qstrTvShow = new URLSearchParams(location.search);
-      const tvShowId = qstrTvShow.get("id");
-      tvShowDetails(tvShowId);
-      break;
-
-    case "/search.html":
-      const queryParams = new URLSearchParams(location.search);
-      if (queryParams.get("type") === null) {
-        showAlert("Please select an option: Movies or Tv Shows");
-      } else if (queryParams.get("searchTerm") === "") {
-        showAlert("Please Enter the Search Term!");
-      } else {
-        search(
-          queryParams.get("type"),
-          queryParams.get("searchTerm"),
-          global.page
-        );
-      }
-      break;
+  // Page routing based on unique elements or path
+  if (document.querySelector("#popular-movies")) {
+    // Only present on index.html
+    displayAndInitSwiper("/trending/movie/week", "movie");
+    popularMovies("/movie/popular");
+  } else if (document.querySelector("#popular-shows")) {
+    // Only present on shows.html
+    displayAndInitSwiper("/trending/tv/week", "tv");
+    popularTvShows("/tv/popular");
+  } else if (
+    document.querySelector(".details-top") &&
+    global.currentPath.includes("movie-details.html")
+  ) {
+    let qstrMovie = new URLSearchParams(location.search);
+    const movieId = qstrMovie.get("id");
+    movieDetails(movieId);
+  } else if (
+    document.querySelector(".details-top") &&
+    global.currentPath.includes("tv-details.html")
+  ) {
+    qstrTvShow = new URLSearchParams(location.search);
+    const tvShowId = qstrTvShow.get("id");
+    tvShowDetails(tvShowId);
+  } else if (global.currentPath.includes("/search.html")) {
+    const queryParams = new URLSearchParams(location.search);
+    if (queryParams.get("type") === null) {
+      showAlert("Please select an option: Movies or Tv Shows");
+    } else if (queryParams.get("searchTerm") === "") {
+      showAlert("Please Enter the Search Term!");
+    } else {
+      search(
+        queryParams.get("type"),
+        queryParams.get("searchTerm"),
+        global.page
+      );
+    }
   }
 
   // Highlight active nav-link
